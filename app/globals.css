@@ -1,49 +1,223 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ── shadcn tokens, themed grass-green on white ────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.16 0.015 145);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.16 0.015 145);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.16 0.015 145);
+  --primary: oklch(0.48 0.18 145);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.976 0.006 145);
+  --secondary-foreground: oklch(0.16 0.015 145);
+  --muted: oklch(0.976 0.006 145);
+  --muted-foreground: oklch(0.46 0.022 145);
+  --accent: oklch(0.95 0.04 145);
+  --accent-foreground: oklch(0.42 0.17 145);
+  --destructive: oklch(0.52 0.22 25);
+  --border: oklch(0.905 0.010 145);
+  /* ~3:1 against background (WCAG 1.4.11) — form-control boundaries */
+  --input: oklch(0.66 0.015 145);
+  --ring: oklch(0.48 0.18 145);
+  --chart-1: oklch(0.48 0.18 145);
+  --chart-2: oklch(0.62 0.16 65);
+  --chart-3: oklch(0.52 0.22 25);
+  --chart-4: oklch(0.66 0.12 200);
+  --chart-5: oklch(0.46 0.022 145);
+  --radius: 0.625rem;
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.16 0.015 145);
+  --sidebar-primary: oklch(0.48 0.18 145);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.95 0.04 145);
+  --sidebar-accent-foreground: oklch(0.42 0.17 145);
+  --sidebar-border: oklch(0.905 0.010 145);
+  --sidebar-ring: oklch(0.48 0.18 145);
+
+  /* RSVP / event-type status colors */
+  --going: oklch(0.48 0.18 145);
+  --maybe: oklch(0.62 0.16 65);
+  --decline: oklch(0.52 0.22 25);
+
+  --header-h: 3.25rem;
+  --sidebar-w: 13rem;
+  /* one content rhythm for every page: same inset, same top, same cap */
+  --page-x: 2rem;
+  --page-top: 2rem;
+  --page-bottom: 4rem;
+  --page-max: 1280px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.dark {
+  --background: oklch(0.145 0.01 145);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0.012 145);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0.012 145);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.7 0.16 145);
+  --primary-foreground: oklch(0.145 0.01 145);
+  --secondary: oklch(0.269 0.012 145);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0.012 145);
+  --muted-foreground: oklch(0.708 0.01 145);
+  --accent: oklch(0.269 0.03 145);
+  --accent-foreground: oklch(0.85 0.1 145);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.7 0.16 145);
+  --chart-1: oklch(0.7 0.16 145);
+  --chart-2: oklch(0.72 0.14 65);
+  --chart-3: oklch(0.7 0.19 22);
+  --chart-4: oklch(0.7 0.1 200);
+  --chart-5: oklch(0.708 0.01 145);
+  --sidebar: oklch(0.205 0.012 145);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.7 0.16 145);
+  --sidebar-primary-foreground: oklch(0.145 0.01 145);
+  --sidebar-accent: oklch(0.269 0.03 145);
+  --sidebar-accent-foreground: oklch(0.85 0.1 145);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.7 0.16 145);
+
+  --going: oklch(0.7 0.16 145);
+  --maybe: oklch(0.72 0.14 65);
+  --decline: oklch(0.7 0.19 22);
+}
+
+@theme inline {
+  --font-heading: var(--font-geist-sans, ui-sans-serif, system-ui, sans-serif);
+  --font-sans: var(--font-geist-sans, ui-sans-serif, system-ui, sans-serif);
+  --font-mono: var(--font-geist-mono, ui-monospace, monospace);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --color-going: var(--going);
+  --color-maybe: var(--maybe);
+  --color-decline: var(--decline);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-}
-
-html {
-  height: 100%;
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
   html {
-    color-scheme: dark;
+    @apply h-full font-sans;
+    color-scheme: light;
   }
+  body {
+    @apply min-h-full bg-background text-foreground antialiased;
+    line-height: 1.6;
+  }
+  h1 {
+    @apply font-bold tracking-tight text-balance leading-tight;
+    font-size: clamp(1.375rem, 3.5vw, 1.875rem);
+  }
+  h2 {
+    @apply text-[1.0625rem] font-semibold tracking-tight;
+  }
+  h3 {
+    @apply text-[0.9375rem] font-semibold;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+  }
+}
+
+/* ── shared page scaffolding (used across most routes) ── */
+@layer components {
+  /* Content fills the column left of it. Capped for line length but NOT
+     mx-auto — centering inside an already-narrowed column is what produced
+     the lopsided gap beside the sidebar. `.page`/`.page-wide` are one thing
+     now; both names kept so no page has to change. */
+  .page,
+  .page-wide {
+    @apply w-full max-w-(--page-max);
+    padding: var(--page-top) var(--page-x) var(--page-bottom);
+  }
+  /* forms only — a narrow column reads better centered, and these routes
+     (login, new-team, profile) have no sidebar to be lopsided against */
+  .page-narrow {
+    @apply mx-auto w-full max-w-[440px];
+    padding: var(--page-top) var(--page-x) var(--page-bottom);
+  }
+
+  /* main + sticky right details panel */
+  .detail-layout {
+    @apply flex w-full max-w-(--page-max) items-start gap-8 max-[1000px]:flex-col;
+    padding: var(--page-top) var(--page-x) var(--page-bottom);
+  }
+  .detail-main   { @apply min-w-0 flex-1; }
+  .detail-panel  { @apply sticky top-[calc(var(--header-h)+var(--page-top))] flex w-[300px] shrink-0 flex-col gap-5 max-[1000px]:static max-[1000px]:w-full; }
+
+  .page-hd    { @apply mb-8 flex items-center justify-between gap-4 [&_h1]:m-0; }
+  .section-hd { @apply mb-3.5 flex items-center justify-between gap-4 [&_h2]:m-0; }
+  .back-link  { @apply mb-7 inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground; }
+
+  .list      { @apply list-none; }
+  /* not .list-item: that name collides with Tailwind's display:list-item utility */
+  .list-row { @apply flex items-center justify-between gap-4 border-b py-3.5 first:border-t; }
+  .list-item-body  { @apply flex min-w-0 flex-1 flex-col gap-1; }
+  .list-item-title { @apply text-[0.9375rem] font-medium transition-colors; }
+  .list-item-desc  { @apply text-[0.8125rem] text-muted-foreground; }
+  .list-item-arrow { @apply shrink-0 text-lg leading-none text-muted-foreground transition-all; }
+  a:hover .list-item-title { @apply text-primary; }
+  a:hover .list-item-arrow { @apply translate-x-0.5 text-primary; }
+
+  .empty { @apply pt-5 pb-1 text-[0.9375rem] text-muted-foreground; }
+
+  .detail-panel-section { @apply rounded-xl border bg-muted/50 px-5 py-4; }
+  .detail-panel-section h3 { @apply mb-3 text-xs font-bold tracking-wider uppercase text-muted-foreground; }
+
+  /* label/value meta tables (event, game, member sidebars) */
+  .meta-table { @apply w-full border-collapse; }
+  .meta-table td { @apply py-2.5 align-top; }
+  .meta-table td:first-child { @apply w-[5.5rem] pr-4 text-xs font-semibold tracking-wider uppercase text-muted-foreground; }
+  .meta-table tr + tr td { @apply border-t; }
 }

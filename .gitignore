@@ -41,3 +41,19 @@ yarn-error.log*
 next-env.d.ts
 
 /docs
+
+# keep the env template committed
+!.env.example
+
+# local tooling / agent state
+/.claude/worktrees
+/.claude/settings.local.json
+/.freebuff
+/.impeccable
+/graphify-out
+
+# Agent / planning docs (local only)
+AGENTS.md
+CLAUDE.md
+MOBILE-PLAN.md
+PRODUCT.md
