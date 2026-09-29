@@ -60,3 +60,5 @@ PRODUCT.md
 
 # Agent planning docs (local only)
 docs/superpowers/
+
+.claude/
