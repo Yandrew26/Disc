@@ -1,6 +1,6 @@
-# Ultimate Frisbee Team App
+# Disc
 
-A multi-tenant team hub for ultimate frisbee clubs: rosters, schedule and RSVPs, live game stats, line building, a plays board, practice plans, and shared expenses — in one place instead of group chats and spreadsheets.
+Disc is a multi-tenant team hub for ultimate frisbee clubs: rosters, schedule and RSVPs, live game stats, line building, a plays board, practice plans, and shared expenses — in one place instead of group chats and spreadsheets.
 
 **Stack:** Next.js 16 (App Router) · React 19 · Tailwind CSS 4 + shadcn/ui · Supabase (Auth, Postgres, Storage) · Drizzle ORM · Vitest
 
